@@ -23,7 +23,18 @@ function reset() {
 
 openTaskFormBtn.addEventListener('click', () => taskForm.classList.toggle('hidden'));
 
-closeTaskFormBtn.addEventListener('click', () => confirmCloseDialog.showModal());
+closeTaskFormBtn.addEventListener('click', () => {
+  const formInputsContainValues =
+    titleInput.value ||
+    dateInput.value ||
+    descriptionInput.value;
+
+  if (formInputsContainValues) {
+    confirmCloseDialog.showModal();
+  } else {
+    reset();
+  }
+});
 
 cancelBtn.addEventListener('click', () => confirmCloseDialog.close());
 
